@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { MarkdownText } from "../markdown-text";
 
 function isComplexValue(value: any): boolean {
   return Array.isArray(value) || (typeof value === "object" && value !== null);
@@ -17,6 +18,8 @@ export function GenericInterruptView({
   const contentLines = contentStr.split("\n");
   const shouldTruncate = contentLines.length > 4 || contentStr.length > 500;
 
+  // const React = require('react')
+  // const ReactDOM = require('react-dom')
   // Function to truncate long string values
   const truncateValue = (value: any): any => {
     if (typeof value === "string" && value.length > 100) {
@@ -80,7 +83,13 @@ export function GenericInterruptView({
                 overflow: "auto",
               }}
             >
-              <table className="min-w-full divide-y divide-gray-200">
+              <MarkdownText>{interrupt}</MarkdownText>
+              <input
+                name="myInput"
+                className="w-full my-5 p-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Type your message..."
+              />
+              {/* <table className="min-w-full divide-y divide-gray-200">
                 <tbody className="divide-y divide-gray-200">
                   {displayEntries.map((item, argIdx) => {
                     const [key, value] = Array.isArray(interrupt)
@@ -104,7 +113,7 @@ export function GenericInterruptView({
                     );
                   })}
                 </tbody>
-              </table>
+              </table> */}
             </motion.div>
           </AnimatePresence>
         </div>
